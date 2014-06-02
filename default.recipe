@@ -1,0 +1,45 @@
+#
+# default settings for building an OpenOCD debian package
+#
+# (C) 2014 Michael Gissing
+#
+
+
+# ------------------------------------------------------------------------------
+# at time of writing, 0.8.0 was the latest version
+#
+
+UPSTREAM_VERSION="0.8.0"
+DEB_VERSION="1"
+
+# ------------------------------------------------------------------------------
+# usually there is no need to change anything further down.
+#
+
+PACKAGE="openocd"
+
+NAME="${PACKAGE}_${UPSTREAM_VERSION}-${DEB_VERSION}"
+FILENAME="${PACKAGE}-${UPSTREAM_VERSION}.tar.gz"
+DIRNAME="${PACKAGE}-${UPSTREAM_VERSION}"
+DEBVERSION="${UPSTREAM_VERSION}-${DEB_VERSION}"
+URL="http://downloads.sourceforge.net/project/openocd/openocd/${UPSTREAM_VERSION}/${FILENAME}"
+
+BUILD_DEPENDS="libusb-1.0-0-dev, libtool, automake, pkg-config, texinfo"
+DEPENDS="libusb-1.0-0"
+
+# ------------------------------------------------------------------------------
+# reuse env variables if set
+#
+
+if [ -n "${DEBFULLNAME}" ]; then
+    FULLNAME="${DEBFULLNAME}"
+else
+    FULLNAME="None"
+fi
+
+if [ -n "${DEBEMAIL}" ]; then
+    EMAIL="${DEBEMAIL}"
+else
+    EMAIL="none@example.com"
+fi
+
